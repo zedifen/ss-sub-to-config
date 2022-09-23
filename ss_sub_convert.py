@@ -35,29 +35,35 @@ def dumps(obj: dict) -> str:
 
 
 def to_ss_servers_item(server: dict):
-    return {
+    s = {
         'id': f"{server['id']}",
         'name': server['remarks'],
         'address': server['server'],
         'port': int(server['server_port']),
         'password': server['password'],
         'method': server['method'],
-        'plugin': server['plugin'],
-        'plugin_opts': server['plugin_opts'],
     }
 
+    if 'plugin' in server.keys():
+        s['plugin'] = server['plugin']
+        s['plugin_opts'] = server['plugin_opts']
+    
+    return s
 
 def to_russ_servers_item(server: dict):
-    return {
+    s = {
         'id': f"{server['id']}",
         'name': server['remarks'],
         'server': "{}:{}".format(server['server'], server['server_port']),
         'password': server['password'],
         'method': server['method'],
-        'plugin': server['plugin'],
-        'plugin_opts': server['plugin_opts'],
     }
 
+    if 'plugin' in server.keys():
+        s['plugin'] = server['plugin']
+        s['plugin_opts'] = server['plugin_opts']
+    
+    return s
 
 def to_ss_config(sub: dict, local_address: str = '127.0.0.1', local_port: int = 8964):
     return {
