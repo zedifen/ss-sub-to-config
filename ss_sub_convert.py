@@ -42,6 +42,8 @@ def to_ss_servers_item(server: dict):
         'port': int(server['server_port']),
         'password': server['password'],
         'method': server['method'],
+        'plugin': server['plugin'],
+        'plugin_opts': server['plugin_opts'],
     }
 
 
@@ -52,6 +54,8 @@ def to_russ_servers_item(server: dict):
         'server': "{}:{}".format(server['server'], server['server_port']),
         'password': server['password'],
         'method': server['method'],
+        'plugin': server['plugin'],
+        'plugin_opts': server['plugin_opts'],
     }
 
 
