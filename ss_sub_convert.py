@@ -49,7 +49,7 @@ def to_ss_servers_item(server: dict):
 
 def to_russ_servers_item(server: dict):
     return {
-        'id': server['id'],
+        'id': f"{server['id']}",
         'name': server['remarks'],
         'server': "{}:{}".format(server['server'], server['server_port']),
         'password': server['password'],
@@ -64,8 +64,8 @@ def to_ss_config(sub: dict):
         'servers': list(map(to_ss_servers_item, sub['servers'])),
         'local_address': '127.0.0.1',
         'local_port': 8964,
-        'bytes_used': sub['bytes_used'],
-        'bytes_remaining': sub['bytes_remaining'],
+        'bytes_used': sub.get('bytes_used', 1024),
+        'bytes_remaining': sub.get('bytes_remaining', 1024),
     }
 
 
