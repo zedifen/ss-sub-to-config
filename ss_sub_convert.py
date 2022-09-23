@@ -70,6 +70,11 @@ def to_ss_config(sub: dict, local_address: str = '127.0.0.1', local_port: int = 
         'servers': list(map(to_ss_servers_item, sub['servers'])),
         'local_address': local_address,
         'local_port': local_port,
+        'balancer': {
+            'max_server_rtt': 5,  # seconds
+            'check_interval': 30,  # seconds
+            'check_best_interval': 30  # seconds
+        },
         'bytes_used': sub.get('bytes_used', 1024),
         'bytes_remaining': sub.get('bytes_remaining', 1024),
     }
