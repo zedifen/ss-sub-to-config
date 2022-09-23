@@ -59,21 +59,21 @@ def to_russ_servers_item(server: dict):
     }
 
 
-def to_ss_config(sub: dict):
+def to_ss_config(sub: dict, local_address: str = '127.0.0.1', local_port: int = 8964):
     return {
         'servers': list(map(to_ss_servers_item, sub['servers'])),
-        'local_address': '127.0.0.1',
-        'local_port': 8964,
+        'local_address': local_address,
+        'local_port': local_port,
         'bytes_used': sub.get('bytes_used', 1024),
         'bytes_remaining': sub.get('bytes_remaining', 1024),
     }
 
 
-def to_russ_config(sub: dict):
+def to_russ_config(sub: dict, local_address: str = '127.0.0.1', local_port: int = 8964):
     return {
         "select": 1,
         "autostart": False,
         "startminimized": False,
-        "local_addr": "127.0.0.1:8964",
+        "local_addr": f"{local_address}:{local_port}",
         "servers": list(map(to_russ_servers_item, sub['servers'])),
     }
